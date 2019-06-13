@@ -1,2 +1,13 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+<h1><%= @playlist1['name'] %></h1>
+<%@playlist1['images'].each do |i|%>
+<%= image_tag i['url'], alt: "Le Wagon", width: 200 %>
+<%end%>
+
+<h1><%= @playlist2['name'] %></h1>
+<%@playlist2['images'].each do |i|%>
+<%= image_tag i['url'], alt: "Le Wagon", width: 200 %>
+<%end%>
+
