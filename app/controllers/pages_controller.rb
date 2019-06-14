@@ -5,7 +5,17 @@ class PagesController < ApplicationController
 
   def home
     id1 = '0NEJ0N8MDVOwMWVmLFO0Jj'
-    mykey = 'Bearer BQDlzrP6HqFWqCw4kYWXVkSLk3XAtSFJzu5QzwWt-xlRsJViCV5wAULoBqCkNe5gtuLWBHQmt8TuBpZtygJaV-UzBHsi2afN3pFuW3zWo_KfJIY-MyEvGogy4Y4Pv3IcJKo3ccVm8tPaTU2h9PyBX_5783kblzFLdmGlWhPvkZQ3gtxaJyUZwRxUcPpoZ8C0R2VWqK5ADbTxq-GNdA7xRwrNrtgwZQ'
+
+    myClientKey = ENV["CLIENT_KEY"]
+
+    tokenResponse = RestClient.post("https://accounts.spotify.com/api/token",
+      {'grant_type' => 'client_credentials'},
+      {'Content-Type' => 'application/x-www-form-urlencoded', 'Authorization' => myClientKey})
+
+    token = JSON.parse(tokenResponse)
+
+    mykey = "Bearer " + token["access_token"]
+
     response1 = RestClient.get("https://api.spotify.com/v1/playlists/" + id1,{'Authorization' => mykey})
     @playlist1 = JSON.parse(response1)
 
