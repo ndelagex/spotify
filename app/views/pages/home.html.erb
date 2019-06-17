@@ -1,13 +1,18 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+
+<div class = "main-container">
+
+<div class = "playlist-pictures">
 
 <h1><%= @playlist1['name'] %></h1>
-<%@playlist1['images'].each do |i|%>
-<%= image_tag i['url'], alt: "Le Wagon", width: 200 %>
-<%end%>
+<%i = @playlist1['images'].first%>
+<%= image_tag i['url'], alt: "Le Wagon", width: 200, class:"cover", id:@playlist1['id'] %>
 
 <h1><%= @playlist2['name'] %></h1>
-<%@playlist2['images'].each do |i|%>
-<%= image_tag i['url'], alt: "Le Wagon", width: 200 %>
-<%end%>
+<%i = @playlist2['images'].first%>
+<%= image_tag i['url'], alt: "Le Wagon", width: 200, class:"cover", id:@playlist2['id'] %>
+</div>
+
+<div class="spotify-embed"><iframe src="https://embed.spotify.com/?uri=spotify:user:oosabaj:playlist:2UDe8QqHAXUaLrdb0QsDGE" width="340" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div>
+</div>
 
