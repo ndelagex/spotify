@@ -4,7 +4,7 @@
 
 <%@spotifyPlaylists.each do |sp|%>
 <%i = sp['images'].first%>
-<%= image_tag i['url'], alt: "Le Wagon", width: 200, class:"cover", id:sp['id'] %>
+<%= image_tag i['url'], alt: "Le Wagon", width: 200, height:200,  class:"cover", id:sp['id'] %>
 <%end %>
 
 </div>
