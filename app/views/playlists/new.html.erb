@@ -1,2 +1,4 @@
-<h1>Playlists#new</h1>
-<p>Find me in app/views/playlists/new.html.erb</p>
+<%= simple_form_for(@playlist) do |f| %>
+  <%= f.input :SpotifyId %>
+  <%= f.submit 'Add playlist', class: 'btn'%>
+<% end %>
