@@ -3,7 +3,6 @@
 <div class = "playlist-pictures">
 
 <%@spotifyPlaylists.each do |sp|%>
-<h1><%= sp['name'] %></h1>
 <%i = sp['images'].first%>
 <%= image_tag i['url'], alt: "Le Wagon", width: 200, class:"cover", id:sp['id'] %>
 <%end %>
