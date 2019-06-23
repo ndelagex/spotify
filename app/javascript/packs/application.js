@@ -1,12 +1,11 @@
 import "bootstrap";
 
-const covers = document.querySelectorAll(".cover");
+const covers = document.querySelectorAll(".play-button");
 
 const player = document.querySelector("iframe");
 
 var source = 'https://embed.spotify.com/?uri=spotify:playlist:'
 
-console.log(player.src);
 
 covers.forEach((item) => {
   item.addEventListener("click", (event) => {
