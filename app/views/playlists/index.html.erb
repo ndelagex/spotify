@@ -3,7 +3,17 @@
 <div class = "playlist-pictures">
 <%@spotifyPlaylists.each do |sp|%>
 <%i = sp['images'].first%>
-<%= image_tag i['url'], alt: "Le Wagon", width: 200, height:200,  class:"cover", id:sp['id'] %>
+<div class="overlay-image">
+<%= image_tag i['url'], alt: "Le Wagon", width: 200, height:200,  class:"cover" %>
+<div class="text">
+<%= image_tag "play-button.png", width: 80, height:80,  class:"play-button", id:sp['id']%>
+<br>
+<br>
+<%= sp['owner']['display_name']%>
+<br>
+<%= sp['name']%>
+</div>
+</div>
 <%end %>
 </div>
 
