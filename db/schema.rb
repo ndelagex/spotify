@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_24_172348) do
+ActiveRecord::Schema.define(version: 2019_06_27_160853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 2019_06_24_172348) do
     t.integer "is_robot", default: 1
     t.integer "is_summer", default: 1
     t.integer "is_urban", default: 1
+    t.text "danceability"
+    t.text "energy"
+    t.text "loudness"
+    t.text "speechiness"
+    t.text "acousticness"
+    t.text "instrumentalness"
+    t.text "liveness"
+    t.text "valence"
+    t.text "tempo"
   end
 
   create_table "users", force: :cascade do |t|
