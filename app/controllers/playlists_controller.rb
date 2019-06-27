@@ -1,5 +1,7 @@
 class PlaylistsController < ApplicationController
 
+  include ::SpotifyHelper
+
   skip_before_action :authenticate_user!, only: [:index, :new]
   require "json"
   require "rest-client"
@@ -28,6 +30,17 @@ class PlaylistsController < ApplicationController
     @playlist.ownerName = spotifyPlaylist['owner']['display_name']
     @playlist.ownerId = spotifyPlaylist['owner']['id']
 
+    features = compute_playlist_features(spotifyPlaylist)
+    @playlist.danceability = features['danceability']
+    @playlist.energy = features['energy']
+    @playlist.loudness = features['loudness']
+    @playlist.speechiness = features['speechiness']
+    @playlist.acousticness = features['acousticness']
+    @playlist.instrumentalness = features['instrumentalness']
+    @playlist.liveness = features['liveness']
+    @playlist.valence = features['valence']
+    @playlist.tempo = features['tempo']
+
     if @playlist.save
       redirect_to playlists_path
     else
@@ -55,14 +68,4 @@ class PlaylistsController < ApplicationController
     params.require(:playlist).permit(:SpotifyId) # , places_attributes: [:places, :name, :address])
   end
 
-  def get_playlist(id)
-    myClientKey = ENV["CLIENT_KEY"]
-    tokenResponse = RestClient.post("https://accounts.spotify.com/api/token",
-      {'grant_type' => 'client_credentials'},
-      {'Content-Type' => 'application/x-www-form-urlencoded', 'Authorization' => myClientKey})
-    token = JSON.parse(tokenResponse)
-    mykey = "Bearer " + token["access_token"]
-    response1 = RestClient.get("https://api.spotify.com/v1/playlists/" + id,{'Authorization' => mykey})
-    return spotifyPlaylist = JSON.parse(response1)
-  end
 end
