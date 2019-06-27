@@ -30,6 +30,17 @@ class PlaylistsController < ApplicationController
     @playlist.ownerName = spotifyPlaylist['owner']['display_name']
     @playlist.ownerId = spotifyPlaylist['owner']['id']
 
+    features = compute_playlist_features(spotifyPlaylist)
+    @playlist.danceability = features['danceability']
+    @playlist.energy = features['energy']
+    @playlist.loudness = features['loudness']
+    @playlist.speechiness = features['speechiness']
+    @playlist.acousticness = features['acousticness']
+    @playlist.instrumentalness = features['instrumentalness']
+    @playlist.liveness = features['liveness']
+    @playlist.valence = features['valence']
+    @playlist.tempo = features['tempo']
+
     if @playlist.save
       redirect_to playlists_path
     else
