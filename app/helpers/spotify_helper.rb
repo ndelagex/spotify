@@ -23,7 +23,7 @@ module SpotifyHelper
     tracks = playlist['tracks']
     items = tracks['items']
     items.each do |i|
-      track_ids << i['track']['id']
+      track_ids << i['track']['id'] if i['track']['id']
     end
     return track_ids
   end
@@ -42,10 +42,32 @@ module SpotifyHelper
     keys = ['danceability','energy','loudness','speechiness','acousticness','instrumentalness','liveness','valence','tempo']
     keys.each do |k|
       keyHash = {}
-      keyHash['avg'] = track_features.map {|x| x[k]}.sum / track_features.size
+      keyHash['mean'] = track_features.map {|x| x[k]}.mean
+      keyHash['median'] = track_features.map {|x| x[k]}.median
+      keyHash['std'] = track_features.map {|x| x[k]}.standard_deviation
       featHash[k] = keyHash
     end
     return featHash
+  end
+
+  def mean
+    (self.sum/self.length).round(3)
+  end
+
+  def sample_variance
+    m = self.mean
+    sum = self.inject(0){|accum, i| accum +(i-m)**2 }
+    sum/(self.length - 1)
+  end
+
+  def standard_deviation
+    (Math.sqrt(self.sample_variance)).round(3)
+  end
+
+  def median
+    sorted = self.sort
+    len = sorted.length
+    (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
   end
 end
 
