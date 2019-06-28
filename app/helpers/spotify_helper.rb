@@ -38,7 +38,7 @@ module SpotifyHelper
 
   def compute_playlist_features(playlist)
     track_ids = get_track_ids(playlist)
-    track_features = get_features(track_ids.join(','))
+    track_features = get_features(track_ids.join(',')).compact
     featHash = {}
     keys = ['danceability','energy','loudness','speechiness','acousticness','instrumentalness','liveness','valence','tempo']
     keys.each do |k|
