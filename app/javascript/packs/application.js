@@ -16,5 +16,14 @@ covers.forEach((item) => {
 });
 });
 
+const playlists = document.querySelectorAll(".overlay-image");
+const slider = document.querySelector("#danceability-slider");
 
 
+slider.addEventListener("change", (event) => {
+  console.log(slider.value);
+  playlists.forEach((item) => {
+  // var id = item.attributes.id.value;
+  //var newSource = source + id;
+});
+});

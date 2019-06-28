@@ -7,6 +7,7 @@ class PlaylistsController < ApplicationController
   require "rest-client"
 
   def index
+    @danceability = params[:danceability]
     @spotifyPlaylists = []
     playlists = Playlist.all
 
