@@ -12,7 +12,9 @@ class PlaylistsController < ApplicationController
     playlists = Playlist.all
 
     playlists.each do |p|
-      @spotifyPlaylists << get_playlist(p.SpotifyId)
+      spotifyPlaylist = get_playlist(p.SpotifyId)
+      spotifyPlaylist['is_dancing'] = p.is_dancing
+      @spotifyPlaylists << spotifyPlaylist
     end
   end
 

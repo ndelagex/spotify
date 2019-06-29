@@ -19,11 +19,16 @@ covers.forEach((item) => {
 const playlists = document.querySelectorAll(".overlay-image");
 const slider = document.querySelector("#danceability-slider");
 
-
 slider.addEventListener("change", (event) => {
-  console.log(slider.value);
+  let slider_value = slider.value;
+  console.log(slider_value);
   playlists.forEach((item) => {
-  // var id = item.attributes.id.value;
-  //var newSource = source + id;
-});
+  ///console.log(item.querySelector("#is_dancing").innerText);
+    let is_dancing = item.querySelector("#is_dancing").innerText
+    console.log(is_dancing);
+    item.style.display = "";
+    if (is_dancing !== slider_value) {
+      item.style.display = "none";
+    }
+  });
 });
