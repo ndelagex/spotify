@@ -14,6 +14,9 @@ class PlaylistsController < ApplicationController
     playlists.each do |p|
       spotifyPlaylist = get_playlist(p.SpotifyId)
       spotifyPlaylist['is_dancing'] = p.is_dancing
+      spotifyPlaylist['is_vocal'] = p.is_vocal
+      spotifyPlaylist['is_robot'] = p.is_robot
+      spotifyPlaylist['is_summer'] = p.is_summer
       @spotifyPlaylists << spotifyPlaylist
     end
   end
