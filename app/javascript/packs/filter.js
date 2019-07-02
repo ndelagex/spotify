@@ -1,21 +1,34 @@
 const filter = () => {
-  const playlists = document.querySelectorAll(".overlay-image");
+
 
   const dancing_slider = document.querySelector("#danceability-slider");
 
   dancing_slider.addEventListener("change", (event) => {
     let slider_value = parseInt(dancing_slider.value);
     console.log(slider_value);
+    const playlists = document.querySelectorAll(".overlay-image");
+
     playlists.forEach((item) => {
     ///console.log(item.querySelector("#is_dancing").innerText);
-      let is_dancing = item.querySelector("#is_dancing").innerText
-      item.style.display = "";
+      let is_dancing = item.querySelector("#is_dancing").innerText;
+      let is_dancing_filtered = item.querySelector("#is_dancing_filtered").innerText;
+      let is_vocal_filtered = item.querySelector("#is_vocal_filtered").innerText;
+      let is_summer_filtered = item.querySelector("#is_summer_filtered").innerText;
+      let is_robot_filtered = item.querySelector("#is_robot_filtered").innerText;
       if (
         ((is_dancing == "2") && ([1,2].includes(slider_value))) ||
         ((is_dancing == "1") && ([1,5].includes(slider_value))) ||
         ((is_dancing == "0") && ([4,5].includes(slider_value)))
         )
       {
+        item.style.display = "none";
+        item.querySelector("#is_dancing_filtered").innerText = 'true';
+      } else
+      {
+        item.style.display = "";
+        item.querySelector("#is_dancing_filtered").innerText = 'false';
+      }
+      if ([is_vocal_filtered,is_summer_filtered,is_robot_filtered].includes('true')) {
         item.style.display = "none";
       }
     });
@@ -27,17 +40,28 @@ const filter = () => {
 
   vocability_slider.addEventListener("change", (event) => {
     let slider_value = parseInt(vocability_slider.value);
-    console.log(slider_value);
+    const playlists = document.querySelectorAll(".overlay-image");
     playlists.forEach((item) => {
     ///console.log(item.querySelector("#is_dancing").innerText);
-      let is_vocal = item.querySelector("#is_vocal").innerText
-      item.style.display = "";
+      let is_vocal = item.querySelector("#is_vocal").innerText;
+      let is_dancing_filtered = item.querySelector("#is_dancing_filtered").innerText;
+      let is_vocal_filtered = item.querySelector("#is_vocal_filtered").innerText;
+      let is_summer_filtered = item.querySelector("#is_summer_filtered").innerText;
+      let is_robot_filtered = item.querySelector("#is_robot_filtered").innerText;
       if (
         ((is_vocal == "2") && ([1,2].includes(slider_value))) ||
         ((is_vocal == "1") && ([1,5].includes(slider_value))) ||
         ((is_vocal == "0") && ([4,5].includes(slider_value)))
         )
       {
+        item.style.display = "none";
+        item.querySelector("#is_vocal_filtered").innerText = 'true';
+      } else
+      {
+        item.style.display = "";
+        item.querySelector("#is_vocal_filtered").innerText = 'false';
+      };
+      if ([is_dancing_filtered,is_summer_filtered,is_robot_filtered].includes('true')) {
         item.style.display = "none";
       }
     });
@@ -50,9 +74,14 @@ const filter = () => {
   summerability_slider.addEventListener("change", (event) => {
     let slider_value = parseInt(summerability_slider.value);
     console.log(slider_value);
+    const playlists = document.querySelectorAll(".overlay-image");
     playlists.forEach((item) => {
     ///console.log(item.querySelector("#is_dancing").innerText);
-      let is_summer = item.querySelector("#is_summer").innerText
+      let is_summer = item.querySelector("#is_summer").innerText;
+      let is_dancing_filtered = item.querySelector("#is_dancing_filtered").innerText;
+      let is_vocal_filtered = item.querySelector("#is_vocal_filtered").innerText;
+      let is_summer_filtered = item.querySelector("#is_summer_filtered").innerText;
+      let is_robot_filtered = item.querySelector("#is_robot_filtered").innerText;
       item.style.display = "";
       if (
         ((is_summer == "2") && ([1,2].includes(slider_value))) ||
@@ -60,6 +89,14 @@ const filter = () => {
         ((is_summer == "0") && ([4,5].includes(slider_value)))
         )
       {
+        item.style.display = "none";
+        item.querySelector("#is_summer_filtered").innerText = 'true';
+      } else
+      {
+        item.style.display = "";
+        item.querySelector("#is_summer_filtered").innerText = 'false';
+      };
+      if ([is_dancing_filtered,is_vocal_filtered,is_robot_filtered].includes('true')) {
         item.style.display = "none";
       }
     });
@@ -72,9 +109,14 @@ const filter = () => {
   acousticality_slider.addEventListener("change", (event) => {
     let slider_value = parseInt(acousticality_slider.value);
     console.log(slider_value);
+    const playlists = document.querySelectorAll(".overlay-image");
     playlists.forEach((item) => {
     ///console.log(item.querySelector("#is_dancing").innerText);
-      let is_acoustic = item.querySelector("#is_robot").innerText
+      let is_acoustic = item.querySelector("#is_robot").innerText;
+      let is_dancing_filtered = item.querySelector("#is_dancing_filtered").innerText;
+      let is_vocal_filtered = item.querySelector("#is_vocal_filtered").innerText;
+      let is_summer_filtered = item.querySelector("#is_summer_filtered").innerText;
+      let is_robot_filtered = item.querySelector("#is_robot_filtered").innerText;
       item.style.display = "";
       if (
         ((is_acoustic == "2") && ([1,2].includes(slider_value))) ||
@@ -82,6 +124,14 @@ const filter = () => {
         ((is_acoustic == "0") && ([4,5].includes(slider_value)))
         )
       {
+        item.style.display = "none";
+        item.querySelector("#is_robot_filtered").innerText = 'true';
+      } else
+      {
+        item.style.display = "";
+        item.querySelector("#is_robot_filtered").innerText = 'false';
+      };
+      if ([is_dancing_filtered,is_summer_filtered,is_vocal_filtered].includes('true')) {
         item.style.display = "none";
       }
     });
