@@ -12,12 +12,22 @@
 <%= sp['owner']['display_name']%>
 <br>
 <%= sp['name']%>
+<p hidden id = "is_dancing"><%= sp['is_dancing']%></p>
+<p hidden id = "is_dancing_filtered">false</p>
+<p hidden id = "is_vocal"><%= sp['is_vocal']%></p>
+<p hidden id = "is_vocal_filtered">false</p>
+<p hidden id = "is_robot"><%= sp['is_robot']%></p>
+<p hidden id = "is_robot_filtered">false</p>
+<p hidden id = "is_summer"><%= sp['is_summer']%></p>
+<p hidden id = "is_summer_filtered">false</p>
 </div>
 </div>
 <%end %>
 </div>
 
-<div class="spotify-embed"><iframe src="https://embed.spotify.com/?uri=spotify:playlist:4G4urZbsLroiZ6Inr4CJNC?si=X57TrMaYSo--hdUiPasIxQ" height=auto frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<div class="spotify-embed">
+   <%= render 'shared/filter'%>
+  <iframe src="https://embed.spotify.com/?uri=spotify:playlist:4G4urZbsLroiZ6Inr4CJNC?si=X57TrMaYSo--hdUiPasIxQ" height=auto frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 </div>
 
 

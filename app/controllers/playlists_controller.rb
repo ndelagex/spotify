@@ -7,11 +7,17 @@ class PlaylistsController < ApplicationController
   require "rest-client"
 
   def index
+    @danceability = params[:danceability]
     @spotifyPlaylists = []
     playlists = Playlist.all
 
     playlists.each do |p|
-      @spotifyPlaylists << get_playlist(p.SpotifyId)
+      spotifyPlaylist = get_playlist(p.SpotifyId)
+      spotifyPlaylist['is_dancing'] = p.is_dancing
+      spotifyPlaylist['is_vocal'] = p.is_vocal
+      spotifyPlaylist['is_robot'] = p.is_robot
+      spotifyPlaylist['is_summer'] = p.is_summer
+      @spotifyPlaylists << spotifyPlaylist
     end
   end
 
