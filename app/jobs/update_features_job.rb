@@ -7,6 +7,7 @@ class UpdateFeaturesJob < ApplicationJob
     playlists = Playlist.all
     playlists.each do |playlist|
       playlistObj = get_playlist(playlist.SpotifyId)
+      #computing playlist features
       features = compute_playlist_features(playlistObj)
       playlist.update(
         danceability: features['danceability'],
