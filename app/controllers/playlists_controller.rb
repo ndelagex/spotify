@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
 
   include ::SpotifyHelper
+  include ::LogicHelper
 
   skip_before_action :authenticate_user!, only: [:index, :new]
   require "json"
@@ -46,6 +47,12 @@ class PlaylistsController < ApplicationController
     @playlist.liveness = features['liveness']
     @playlist.valence = features['valence']
     @playlist.tempo = features['tempo']
+
+    logic_features = implement_logic_features(features)
+    @playlist.is_dancing = logic_features['is_dancing']
+    @playlist.is_vocal = logic_features['is_vocal']
+    @playlist.is_summer = logic_features['is_summer']
+    @playlist.is_robot = logic_features['is_robot']
 
     if @playlist.save
       redirect_to playlists_path

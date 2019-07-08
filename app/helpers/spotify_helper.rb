@@ -1,6 +1,7 @@
 include ::StatsHelper
 require "json"
 require "rest-client"
+require "daru"
 
 module SpotifyHelper
   def get_key
@@ -49,6 +50,28 @@ module SpotifyHelper
       featHash[k] = keyHash
     end
     return featHash
+  end
+
+  def print_tracks_features(playlist_id)
+   playlist = get_playlist(playlist_id)
+   tracks_info = []
+   tracks = playlist['tracks']
+   items = tracks['items']
+   items.each do |i|
+    hashi = {}
+    hashi[:id] = i['track']['id'] if i['track']['id']
+    hashi[:name] = i['track']['name'] if i['track']['name']
+    hashi[:artist] = i['track']['artists'][0]['name'] if i['track']['artists'][0]['name']
+    tracks_info << hashi
+   end
+   track_ids = get_track_ids(playlist)
+   track_features = get_features(track_ids.join(',')).compact
+   tracks_info_by_id = Hash[tracks_info.map { |h| [h[:id], h] }]
+   merged = track_features.map { |h| [tracks_info_by_id[h["id"]],h] }
+   flat_merged = merged.map {|a| a[0].merge(a[1])}
+   df = Daru::DataFrame.new(flat_merged)
+   return df[:id,:name,:artist,"danceability","energy","key","loudness","mode", "speechiness",
+    "acousticness", "instrumentalness", "liveness", "valence", "tempo"]
   end
 
 end
