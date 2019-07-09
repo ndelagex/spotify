@@ -1,7 +1,7 @@
 // Specific CSS for your home-page
 iframe {
   width: 100%;
-  height: 100%;
+  height: 66vh;
 }
 
 .main-container {
@@ -10,13 +10,16 @@ iframe {
 }
 
 .playlist-pictures {
-  width: 72.5vw;
+  width: 72vw;
 }
 
 .spotify-embed {
-  width: 27.5vw;
+  flex-grow: 1;
+  //width: 27.5vw;
   height: 91vh;
-  position: fixed;
+  //position: fixed;
+  position:sticky;
+  top: 60px;
   right: 0;
   margin-right: 5px;
   margin-top: 4px;
