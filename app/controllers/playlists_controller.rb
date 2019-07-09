@@ -78,7 +78,7 @@ class PlaylistsController < ApplicationController
   end
 
   def playlist_params
-    params.require(:playlist).permit(:SpotifyId) # , places_attributes: [:places, :name, :address])
+    params.require(:playlist).permit(:SpotifyId, :artistId) # , places_attributes: [:places, :name, :address])
   end
 
 end

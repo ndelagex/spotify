@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_27_160853) do
+ActiveRecord::Schema.define(version: 2019_07_09_152129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_06_27_160853) do
     t.text "liveness"
     t.text "valence"
     t.text "tempo"
+    t.string "artistId"
   end
 
   create_table "users", force: :cascade do |t|
