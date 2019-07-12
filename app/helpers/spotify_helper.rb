@@ -2,6 +2,8 @@ include ::StatsHelper
 require "json"
 require "rest-client"
 require "daru"
+require "open-uri"
+require "nokogiri"
 
 module SpotifyHelper
   def get_key
@@ -74,5 +76,21 @@ module SpotifyHelper
     "acousticness", "instrumentalness", "liveness", "valence", "tempo"]
   end
 
+  def get_bio(artist_id)
+    url = "https://open.spotify.com/artist/" + artist_id + "/about"
+    html_file = open(url).read
+    html_doc = Nokogiri::HTML(html_file)
+    bio = ''
+    html_doc.search('.bio-primary','.bio-secondary').each do |element|
+      bio += element.text.strip
+    end
+    return bio
+  end
+
+  def get_artist(id)
+    mykey = get_key
+    response1 = RestClient.get("https://api.spotify.com/v1/artists/" + id,{'Authorization' => mykey})
+    return spotifyArtist = JSON.parse(response1)
+  end
 end
 
