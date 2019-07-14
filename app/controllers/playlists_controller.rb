@@ -54,6 +54,14 @@ class PlaylistsController < ApplicationController
     @playlist.is_summer = logic_features['is_summer']
     @playlist.is_robot = logic_features['is_robot']
 
+    #getting bio scraping artists page
+    bio = get_bio(@playlist.artistId)
+    @playlist.bio = bio
+
+    #get artist info using API
+    artistName = get_artist(@playlist.artistId)["name"]
+    @playlist.artistName = artistName
+
     if @playlist.save
       redirect_to playlists_path
     else
@@ -78,7 +86,7 @@ class PlaylistsController < ApplicationController
   end
 
   def playlist_params
-    params.require(:playlist).permit(:SpotifyId) # , places_attributes: [:places, :name, :address])
+    params.require(:playlist).permit(:SpotifyId, :artistId) # , places_attributes: [:places, :name, :address])
   end
 
 end
