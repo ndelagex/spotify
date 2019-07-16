@@ -8,7 +8,10 @@ class PlaylistsController < ApplicationController
   require "rest-client"
 
   def index
-    @danceability = params[:danceability]
+    #get default playlist displayed at the beginning
+    @defaultPlaylist = Playlist.find(25)
+
+    #get all playlists as Spotify objects to get picture and all
     @spotifyPlaylists = []
     playlists = Playlist.all
 
@@ -18,6 +21,9 @@ class PlaylistsController < ApplicationController
       spotifyPlaylist['is_vocal'] = p.is_vocal
       spotifyPlaylist['is_robot'] = p.is_robot
       spotifyPlaylist['is_summer'] = p.is_summer
+      spotifyPlaylist['description'] = p.description
+      spotifyPlaylist['artistName'] = p.artistName
+      spotifyPlaylist['bio'] = p.bio
       @spotifyPlaylists << spotifyPlaylist
     end
   end

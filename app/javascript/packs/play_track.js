@@ -3,6 +3,8 @@ const playTrack = () => {
   const covers = document.querySelectorAll(".play-button");
 
   const player = document.querySelector("iframe");
+  const description = document.querySelector("#info-description");
+  const artist = document.querySelector("#info-artist");
 
   var source = 'https://embed.spotify.com/?uri=spotify:playlist:'
 
@@ -13,6 +15,9 @@ const playTrack = () => {
     var newSource = source + id;
     console.log(newSource);
     player.src = newSource;
+    description.innerText = item.attributes.description.value;
+    artist.innerHTML = "About "+item.attributes.artist.value+":<br />" +
+    item.attributes.bio.value;
   });
   });
 };

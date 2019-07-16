@@ -1,7 +1,25 @@
 // Specific CSS for your home-page
 iframe {
   width: 100%;
+  height: 80px;
+  //height: 66vh;
+}
+
+#player-and-info {
   height: 66vh;
+  background-color: #060404;
+}
+
+.info {
+  color: white;
+  width: 27vw;
+  padding: 10px;
+  h3 {
+    font-size: 14px;
+  }
+  p {
+    font-size: 12px;
+  }
 }
 
 .main-container {
@@ -22,7 +40,7 @@ iframe {
   top: 60px;
   right: 0;
   margin-right: 5px;
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 .overlay-image {

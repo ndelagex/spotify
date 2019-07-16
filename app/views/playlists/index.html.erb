@@ -6,7 +6,8 @@
 <div class="overlay-image">
 <%= image_tag i['url'], alt: "Le Wagon", width: 200, height:200,  class:"cover" %>
 <div class="text">
-<%= image_tag "play-button.png", width: 80, height:80,  class:"play-button", id:sp['id']%>
+<%= image_tag "play-button.png", width: 80, height:80,  class:"play-button", id:sp['id'],
+description: sp['description'], artist: sp['artistName'], bio: sp['bio']%>
 <br>
 <br>
 <%= sp['owner']['display_name']%>
@@ -26,8 +27,16 @@
 </div>
 
 <div class="spotify-embed">
-   <%= render 'shared/filter'%>
-  <iframe src="https://embed.spotify.com/?uri=spotify:playlist:4G4urZbsLroiZ6Inr4CJNC?si=X57TrMaYSo--hdUiPasIxQ" height=auto frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  <div id = "player-and-info">
+  <iframe src=<%="https://embed.spotify.com/?uri=spotify:playlist:" + @defaultPlaylist.SpotifyId%>height=auto frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  <div class = "info">
+    <h3 id = "info-description"> <%=@defaultPlaylist.description%> </h3>
+    <br>
+    <p id = "info-artist"> About <%=@defaultPlaylist.artistName%>: <br>
+    <%=@defaultPlaylist.bio%></p>
+  </div>
+  </div>
+  <%= render 'shared/filter'%>
 </div>
 
 
