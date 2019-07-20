@@ -13,11 +13,26 @@ const playTrack = () => {
     item.addEventListener("click", (event) => {
     var id = item.attributes.id.value;
     var newSource = source + id;
+    var aboutArtist
     console.log(newSource);
     player.src = newSource;
-    description.innerText = item.attributes.description.value;
-    artist.innerHTML = "About "+item.attributes.artist.value+":<br />" +
-    item.attributes.bio.value;
+    if (item.attributes.description.value == "")
+      {
+        description.innerText = ""
+      }
+    else
+      {
+        description.innerHTML = (item.attributes.description.value +"<br />");
+      }
+    if (item.attributes.artist && (item.attributes.bio != ""))
+      {
+        aboutArtist = "About "+item.attributes.artist.value+":<br />" +
+        item.attributes.bio.value
+      }
+    else {
+      aboutArtist = ""
+    }
+    artist.innerHTML = aboutArtist;
   });
   });
 };
