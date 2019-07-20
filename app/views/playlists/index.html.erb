@@ -31,8 +31,7 @@ description: sp['description'], artist: sp['artistName'], bio: sp['bio']%>
   <iframe src=<%="https://embed.spotify.com/?uri=spotify:playlist:" + @defaultPlaylist.SpotifyId%>height=auto frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
   <div class = "info">
     <p id = "info-description"> <%=@defaultPlaylist.description%> <br> </p>
-    <p id = "info-artist">About <%=@defaultPlaylist.artistName%>: <br>
-    <%=@defaultPlaylist.bio%></p>
+    <p id = "info-artist"><%=@defaultPlaylist.bio%></p>
   </div>
   </div>
   <%= render 'shared/filter'%>

@@ -18,16 +18,16 @@ const playTrack = () => {
     player.src = newSource;
     if (item.attributes.description.value == "")
       {
-        description.innerText = ""
+        description.style.display = "none";
       }
     else
       {
+        description.style.display = "";
         description.innerHTML = (item.attributes.description.value +"<br />");
       }
-    if (item.attributes.artist && (item.attributes.bio != ""))
+    if (item.attributes.artist && (item.attributes.bio.value != ""))
       {
-        aboutArtist = "About "+item.attributes.artist.value+":<br />" +
-        item.attributes.bio.value
+        aboutArtist = item.attributes.bio.value
       }
     else {
       aboutArtist = ""
