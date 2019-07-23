@@ -1,41 +1,50 @@
+<div class = "banner" style="background-image: url('https://source.unsplash.com/pJadQetzTkI');">
+    <h1> Blendtapes</h1>
+    <h2> Artists curated playlists, a la carte</h2>
+</div>
 <div class = "main-container">
+<div id = left-part>
+  <div id = filter-part>
+    <br>
+    <h3> Filter by your mood and start digging our selection </h3>
+    <br>
+    <%= render 'shared/filter'%>
+  </div>
+  <div id = "playlist-pictures">
+  <%@spotifyPlaylists.each do |sp|%>
+    <%i = sp['images'].first%>
+    <div class="overlay-image">
+    <%= image_tag i['url'], alt: "Le Wagon", width: 200, height:200,  class:"cover" %>
+    <div class="text">
+    <%= image_tag "play-button.png", width: 80, height:80,  class:"play-button", id:sp['id'],
+    description: sp['description'], artist: sp['artistName'], bio: sp['bio']%>
+    <br>
+    <br>
+    <%= sp['owner']['display_name']%>
+    <br>
+    <%= sp['name']%>
+    <p hidden id = "is_dancing"><%= sp['is_dancing']%></p>
+    <p hidden id = "is_dancing_filtered">false</p>
+    <p hidden id = "is_vocal"><%= sp['is_vocal']%></p>
+    <p hidden id = "is_vocal_filtered">false</p>
+    <p hidden id = "is_robot"><%= sp['is_robot']%></p>
+    <p hidden id = "is_robot_filtered">false</p>
+    <p hidden id = "is_summer"><%= sp['is_summer']%></p>
+    <p hidden id = "is_summer_filtered">false</p>
+    </div>
+    </div>
+  <%end %>
+  </div>
+</div>
 
-<div class = "playlist-pictures">
-<%@spotifyPlaylists.each do |sp|%>
-<%i = sp['images'].first%>
-<div class="overlay-image">
-<%= image_tag i['url'], alt: "Le Wagon", width: 200, height:200,  class:"cover" %>
-<div class="text">
-<%= image_tag "play-button.png", width: 80, height:80,  class:"play-button", id:sp['id'],
-description: sp['description'], artist: sp['artistName'], bio: sp['bio']%>
-<br>
-<br>
-<%= sp['owner']['display_name']%>
-<br>
-<%= sp['name']%>
-<p hidden id = "is_dancing"><%= sp['is_dancing']%></p>
-<p hidden id = "is_dancing_filtered">false</p>
-<p hidden id = "is_vocal"><%= sp['is_vocal']%></p>
-<p hidden id = "is_vocal_filtered">false</p>
-<p hidden id = "is_robot"><%= sp['is_robot']%></p>
-<p hidden id = "is_robot_filtered">false</p>
-<p hidden id = "is_summer"><%= sp['is_summer']%></p>
-<p hidden id = "is_summer_filtered">false</p>
-</div>
-</div>
-<%end %>
-</div>
-
-<div class="spotify-embed">
-  <div id = "player-and-info">
+<div id = "right-part">
+    <div class = "info">
+      <p id = "info-description"> <%=@defaultPlaylist.description%> <br> </p>
+      <p id = "info-artist"><%=@defaultPlaylist.bio%></p>
+    </div>
   <iframe src=<%="https://embed.spotify.com/?uri=spotify:playlist:" + @defaultPlaylist.SpotifyId%>height=auto frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-  <div class = "info">
-    <p id = "info-description"> <%=@defaultPlaylist.description%> <br> </p>
-    <p id = "info-artist"><%=@defaultPlaylist.bio%></p>
-  </div>
-  </div>
-  <%= render 'shared/filter'%>
 </div>
+
 
 
 </div>

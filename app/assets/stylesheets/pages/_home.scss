@@ -1,5 +1,39 @@
 // Specific CSS for your home-page
 // spotify reader
+.banner{
+  text-align: center;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-size: cover;
+  color: white;
+}
+
+.main-container {
+ display:flex;
+}
+
+#left-part {
+  width: 66vw;
+  #filter-part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    h3{
+      font-size: 18px;
+    }
+  }
+  #playlist-pictures {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 15px;
+    justify-items: center;
+  }
+}
+
 iframe {
   width: 100%;
   //height: 80px;
@@ -7,10 +41,16 @@ iframe {
   height: 60vh;
 }
 
-#player-and-info {
+#right-part {
   //height: 66vh;
   height: 92vh;
   background-color: #060404;
+  flex-grow: 1;
+  //width: 27.5vw;
+  //position: fixed;
+  position:sticky;
+  top: 60px;
+  right: 0;
   //display: flex;
   //flex-direction: column;
 }
@@ -37,26 +77,9 @@ iframe {
   background-color: #060404; /* or add it to the track */
 }
 
-.main-container {
- display:flex;
- padding: 5px;
-}
 
-.playlist-pictures {
-  width: 72vw;
-}
 
-.spotify-embed {
-  flex-grow: 1;
-  //width: 27.5vw;
-  height: 91vh;
-  //position: fixed;
-  position:sticky;
-  top: 60px;
-  right: 0;
-  margin-right: 5px;
-  margin-top: 3px;
-}
+
 
 .overlay-image {
   margin-top : 2px;
