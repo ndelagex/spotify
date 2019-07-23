@@ -3,6 +3,8 @@ const playTrack = () => {
   const covers = document.querySelectorAll(".play-button");
 
   const player = document.querySelector("iframe");
+  const description = document.querySelector("#info-description");
+  const artist = document.querySelector("#info-artist");
 
   var source = 'https://embed.spotify.com/?uri=spotify:playlist:'
 
@@ -11,8 +13,26 @@ const playTrack = () => {
     item.addEventListener("click", (event) => {
     var id = item.attributes.id.value;
     var newSource = source + id;
+    var aboutArtist
     console.log(newSource);
     player.src = newSource;
+    if (item.attributes.description.value == "")
+      {
+        description.style.display = "none";
+      }
+    else
+      {
+        description.style.display = "";
+        description.innerHTML = (item.attributes.description.value +"<br />");
+      }
+    if (item.attributes.artist && (item.attributes.bio.value != ""))
+      {
+        aboutArtist = item.attributes.bio.value
+      }
+    else {
+      aboutArtist = ""
+    }
+    artist.innerHTML = aboutArtist;
   });
   });
 };
