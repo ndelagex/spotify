@@ -14,7 +14,7 @@
   <%@spotifyPlaylists.each do |sp|%>
     <%i = sp['images'].first%>
     <div class="overlay-image">
-    <%= image_tag i['url'], alt: "Le Wagon", width: 200, height:200,  class:"cover" %>
+    <%= image_tag i['url'], alt: "Le Wagon", width: 180, height:180,  class:"cover" %>
     <div class="text">
     <%= image_tag "play-button.png", width: 80, height:80,  class:"play-button", id:sp['id'],
     description: sp['description'], artist: sp['artistName'], bio: sp['bio']%>
@@ -39,8 +39,17 @@
 
 <div id = "right-part">
     <div class = "info">
-      <p id = "info-description"> <%=@defaultPlaylist.description%> <br> </p>
-      <p id = "info-artist"><%=@defaultPlaylist.bio%></p>
+      <div class = "info-top">
+        <%i = @defaultSpotifyArtist['images'].first%>
+        <%= image_tag i['url'], alt: "Avatar", class:"avatar" %>
+        <div class = "info-text">
+          <p id = "artist-name"> <%=@defaultPlaylist.artistName%> <br> </p>
+          <p id = "playlist-description"> <%=@defaultPlaylist.name%>: <%=@defaultPlaylist.description%> </p>
+        </div>
+      </div>
+      <div class = "info-bottom">
+        <p id = "artist-bio"> <%=@defaultPlaylist.bio%> <br> </p>
+      </div>
     </div>
   <iframe src=<%="https://embed.spotify.com/?uri=spotify:playlist:" + @defaultPlaylist.SpotifyId%>height=auto frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 </div>

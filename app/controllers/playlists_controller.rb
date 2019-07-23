@@ -10,6 +10,7 @@ class PlaylistsController < ApplicationController
   def index
     #get default playlist displayed at the beginning
     @defaultPlaylist = Playlist.find(42)
+    @defaultSpotifyArtist = get_artist(@defaultPlaylist.artistId)
 
     #get all playlists as Spotify objects to get picture and all
     @spotifyPlaylists = []
