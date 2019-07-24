@@ -24,9 +24,13 @@ class PlaylistsController < ApplicationController
       spotifyPlaylist['is_summer'] = p.is_summer
       spotifyPlaylist['description'] = p.description
       spotifyPlaylist['artistName'] = p.artistName
+      spotifyPlaylist['artistId'] = p.artistId
       spotifyPlaylist['bio'] = p.bio
+      spotifyArtist = get_artist(p.artistId) if p.artistId != "1"
+      spotifyPlaylist['avatar'] = spotifyArtist['images'].first['url'] if p.artistId != "1"
       @spotifyPlaylists << spotifyPlaylist
     end
+
   end
 
   def show

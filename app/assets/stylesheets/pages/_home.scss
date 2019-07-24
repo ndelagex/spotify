@@ -18,7 +18,7 @@
 }
 
 #left-part {
-  width: 66vw;
+  min-width: 64vw;
   #filter-part {
     display: flex;
     flex-direction: column;
@@ -45,7 +45,8 @@ iframe {
   width: 100%;
   //height: 80px;
   //height: 66vh;
-  height: 47vh;
+  //height: 47vh;
+  height: 100%;
 }
 
 #right-part {
@@ -63,7 +64,7 @@ iframe {
 }
 
 .info {
-  height: 45vh;
+  max-height: 45vh;
   color: white;
   //width: 26vw;
   padding-top: 15px;
@@ -82,6 +83,7 @@ iframe {
     border-radius: 50%;
     }
     .info-text {
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -92,7 +94,7 @@ iframe {
       }
       #playlist-description {
         font-size: 13px;
-        padding-left: 20px;
+        padding-left: 25px;
       }
     }
   }

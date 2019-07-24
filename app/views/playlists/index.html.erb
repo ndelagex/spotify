@@ -16,8 +16,7 @@
     <div class="overlay-image">
     <%= image_tag i['url'], alt: "Le Wagon", width: 180, height:180,  class:"cover" %>
     <div class="text">
-    <%= image_tag "play-button.png", width: 80, height:80,  class:"play-button", id:sp['id'],
-    description: sp['description'], artist: sp['artistName'], bio: sp['bio']%>
+    <%= image_tag "play-button.png", width: 80, height:80,  class:"play-button", id:sp['id'], name:sp['name'], description: sp['description'], artist: sp['artistName'], bio: sp['bio'], avatar: sp['avatar']%>
     <br>
     <br>
     <%= sp['owner']['display_name']%>
@@ -48,7 +47,7 @@
         </div>
       </div>
       <div class = "info-bottom">
-        <p id = "artist-bio"> <%=@defaultPlaylist.bio%> <br> </p>
+        <p id = "artist-bio"> <%=@defaultPlaylist.bio%></p>
       </div>
     </div>
   <iframe src=<%="https://embed.spotify.com/?uri=spotify:playlist:" + @defaultPlaylist.SpotifyId%>height=auto frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
