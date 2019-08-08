@@ -47,6 +47,9 @@ class PlaylistsController < ApplicationController
     @playlist.name = spotifyPlaylist['name']
     @playlist.ownerName = spotifyPlaylist['owner']['display_name']
     @playlist.ownerId = spotifyPlaylist['owner']['id']
+    #get cover and save it in Cloudinary
+    i = spotifyPlaylist['images'].first
+    @playlist.remote_photo_url = i['url']
 
     features = compute_playlist_features(spotifyPlaylist)
     @playlist.danceability = features['danceability']
