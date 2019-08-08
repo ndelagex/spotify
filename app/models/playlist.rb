@@ -1,4 +1,5 @@
 class Playlist < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
   serialize :danceability,Hash
   serialize :energy, Hash
   serialize :loudness, Hash
