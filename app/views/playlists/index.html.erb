@@ -38,8 +38,7 @@
 <div id = "right-part">
     <div class = "info">
       <div class = "info-top">
-        <%i = @defaultSpotifyArtist['images'].first%>
-        <%= image_tag i['url'], alt: "Avatar", class:"avatar" %>
+        <%= cl_image_tag @defaultPlaylist.avatar, class:"avatar" %>
         <div class = "info-text">
           <p id = "artist-name"> <%=@defaultPlaylist.artistName%> <br> </p>
           <p id = "playlist-description"> <%=@defaultPlaylist.name%>: <%=@defaultPlaylist.description%> </p>
