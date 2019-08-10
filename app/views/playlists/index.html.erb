@@ -11,24 +11,23 @@
     <%= render 'shared/filter'%>
   </div>
   <div id = "playlist-pictures">
-  <%@spotifyPlaylists.each do |sp|%>
-    <%i = sp['images'].first%>
+  <%@playlists.each do |sp|%>
     <div class="overlay-image">
-    <%= image_tag i['url'], alt: "Le Wagon", width: 180, height:180,  class:"cover" %>
+    <%= cl_image_tag sp.photo, alt: "Le Wagon", width: 180, height:180, class:"cover"%>
     <div class="text">
-    <%= image_tag "play-button.png", width: 80, height:80,  class:"play-button", id:sp['id'], name:sp['name'], description: sp['description'], artist: sp['artistName'], bio: sp['bio'], avatar: sp['avatar']%>
+    <%= image_tag "play-button.png", width: 80, height:80,  class:"play-button", id:sp.SpotifyId, name:sp.name, description: sp.description, artist: sp.artistName, bio: sp.bio, avatar: sp.avatar%>
     <br>
     <br>
-    <%= sp['owner']['display_name']%>
+    <%= sp.ownerName%>
     <br>
-    <%= sp['name']%>
-    <p hidden id = "is_dancing"><%= sp['is_dancing']%></p>
+    <%= sp.name%>
+    <p hidden id = "is_dancing"><%= sp.is_dancing%></p>
     <p hidden id = "is_dancing_filtered">false</p>
-    <p hidden id = "is_vocal"><%= sp['is_vocal']%></p>
+    <p hidden id = "is_vocal"><%= sp.is_vocal%></p>
     <p hidden id = "is_vocal_filtered">false</p>
-    <p hidden id = "is_robot"><%= sp['is_robot']%></p>
+    <p hidden id = "is_robot"><%= sp.is_robot%></p>
     <p hidden id = "is_robot_filtered">false</p>
-    <p hidden id = "is_summer"><%= sp['is_summer']%></p>
+    <p hidden id = "is_summer"><%= sp.is_summer%></p>
     <p hidden id = "is_summer_filtered">false</p>
     </div>
     </div>
