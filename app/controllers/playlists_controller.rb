@@ -10,26 +10,11 @@ class PlaylistsController < ApplicationController
   def index
     #get default playlist displayed at the beginning
     @defaultPlaylist = Playlist.find(42)
-    @defaultSpotifyArtist = get_artist(@defaultPlaylist.artistId)
 
     #get all playlists as Spotify objects to get picture and all
-    @spotifyPlaylists = []
-    playlists = Playlist.all
+    #@spotifyPlaylists = []
+    @playlists = Playlist.all
 
-    playlists.each do |p|
-      spotifyPlaylist = get_playlist(p.SpotifyId)
-      spotifyPlaylist['is_dancing'] = p.is_dancing
-      spotifyPlaylist['is_vocal'] = p.is_vocal
-      spotifyPlaylist['is_robot'] = p.is_robot
-      spotifyPlaylist['is_summer'] = p.is_summer
-      spotifyPlaylist['description'] = p.description
-      spotifyPlaylist['artistName'] = p.artistName
-      spotifyPlaylist['artistId'] = p.artistId
-      spotifyPlaylist['bio'] = p.bio
-      spotifyArtist = get_artist(p.artistId) if p.artistId != "1"
-      spotifyPlaylist['avatar'] = spotifyArtist['images'].first['url'] if p.artistId != "1"
-      @spotifyPlaylists << spotifyPlaylist
-    end
 
   end
 
@@ -47,6 +32,9 @@ class PlaylistsController < ApplicationController
     @playlist.name = spotifyPlaylist['name']
     @playlist.ownerName = spotifyPlaylist['owner']['display_name']
     @playlist.ownerId = spotifyPlaylist['owner']['id']
+    #get cover and save it in Cloudinary
+    i = spotifyPlaylist['images'].first
+    @playlist.remote_photo_url = i['url']
 
     features = compute_playlist_features(spotifyPlaylist)
     @playlist.danceability = features['danceability']
@@ -70,8 +58,10 @@ class PlaylistsController < ApplicationController
     @playlist.bio = bio
 
     #get artist info using API
-    artistName = get_artist(@playlist.artistId)["name"]
-    @playlist.artistName = artistName
+    artist = get_artist(@playlist.artistId)
+    @playlist.artistName = artist["name"]
+    a = artist['images'].first
+    @playlist.remote_avatar_url = a['url']
 
     if @playlist.save
       redirect_to playlists_path

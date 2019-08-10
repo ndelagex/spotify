@@ -47,7 +47,7 @@ const playTrack = () => {
     }
     artistName.innerHTML = artistNamo;
     // setting avatar
-    if (item.attributes.avatar)
+    if (item.attributes.avatar.value != "")
       {
         avatar.style.display = "";
         avatar.src = item.attributes.avatar.value;
